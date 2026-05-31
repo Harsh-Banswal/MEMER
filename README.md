@@ -15,7 +15,7 @@
 
 ## Key Features
 
-* Real-Time Pose Estimation:** Uses Google MediaPipe on the backend with hardware-accelerated EGL rendering to extract 106-dimensional pose vectors (upper body, shoulders, elbows, wrists, and hand joints) at **50+ FPS**.
+* Real-Time Pose Estimation:** Uses Google MediaPipe on the backend with hardware-accelerated EGL rendering to extract 106-dimensional pose vectors (upper body, shoulders, elbows, wrists, and hand joints) at **35+ FPS**.
 *  Distance & Scale Invariant Matching:** Pose normalization algorithms ensure matching remains 100% accurate regardless of your distance from the camera or coordinate scale.
 *  Collision-Free Dataset Merging:** Automatically handles sequential ZIP archive imports, prepending parent-directory structures and zip stems to guarantee no image filename collisions.
 *  SIMD Vector Acceleration:** Employs **FAISS** (FlatIP index) with L2-normalized cosine similarity for sub-millisecond search execution.
