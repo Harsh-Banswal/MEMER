@@ -51,9 +51,9 @@ pip install -r requirements.txt
 
 To achieve maximum matching coverage, **MEMER** supports merging multiple massive meme libraries seamlessly:
 
-* **Dataset 1: Reddit Memes Dataset (Archive 2)**  
+* **Dataset 1: Reddit Memes Dataset (Zip)**  
   🔗 [Kaggle Link](https://kaggle.com/datasets/sayangoswami/reddit-memes-dataset)
-* **Dataset 2: Memotion Dataset 7k (Archive 3)**  
+* **Dataset 2: Memotion Dataset 7k (Zip)**  
   🔗 [Kaggle Link](https://www.kaggle.com/datasets/williamscott701/memotion-dataset-7k)
 
 ### How to Merge Datasets Collision-Free:
