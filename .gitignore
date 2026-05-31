@@ -1,0 +1,34 @@
+# === Python Environment ===
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# === Large Dataset Archives ===
+*.zip
+*.tar
+*.gz
+*.rar
+archive*/
+
+# === Application Data & FAISS Indexes ===
+# We ignore raw extracted memes and vector indexes because they are huge (gigabytes of binary data)
+data/extracted_memes/
+data/memes/
+data/index.faiss
+data/id_map.json
+data/vectors.npy
+
+# Keep data/ directory structure but ignore large files
+!data/metadata.json
+
+# === IDE & System Files ===
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="MEMER - Match your body pose to popular internet memes in real-time using MediaPipe, FAISS, and FastAPI.">
+    <title>MEMER | Real-Time Meme Matching Engine</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Custom CSS Link -->
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Glowing background blobs -->
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+
+        <!-- Sidebar / Controls -->
+        <aside class="sidebar">
+            <div class="brand">
+                <h1>MEMER</h1>
+            </div>
+            <p class="tagline">MAKE A POSE TO GET YOURSELF A MEME</p>
+
+            <div class="control-card">
+                <h3>Webcam</h3>
+                <!-- <p class="control-desc">Enable camera, align your body, and match with the dataset in real-time.</p> -->
+
+                <button id="btn-camera" class="btn btn-primary">
+                    <i data-lucide="video"></i>
+                    <span>Start Webcam</span>
+                </button>
+
+                <div class="status-indicator">
+                    <span class="status-dot" id="status-dot"></span>
+                    <span class="status-text" id="status-text">Camera offline</span>
+                </div>
+            </div>
+
+            <div class="metrics-card">
+                <h3>System Status</h3>
+                <div class="metric-row">
+                    <span class="metric-label">Latency:</span>
+                    <span class="metric-value" id="metric-latency">0 ms</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">FPS:</span>
+                    <span class="metric-value" id="metric-fps">0</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Engine:</span>
+                    <span class="metric-value text-accent">FAISS (FlatIP)</span>
+                </div>
+            </div>
+
+            <div class="quick-instructions">
+                <h3>Quick Tips</h3>
+                <ul>
+                    <li><span class="tip-num">1</span> Make sure your upper body is fully in frame.</li>
+                    <li><span class="tip-num">2</span> Keep both shoulders visible for automatic coordinate alignment.
+                    </li>
+                    <li><span class="tip-num">3</span> Strike bold poses (hands up, arms wide, crossed, etc.)!</li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="main-content">
+            <!-- Left Panel: Webcam Feed Canvas -->
+            <section class="panel-section video-section">
+                <div class="section-header">
+                    <h2>Face Tracking</h2>
+                </div>
+                <div class="canvas-wrapper">
+                    <video id="webcam" autoplay playsinline muted></video>
+                    <canvas id="canvas-overlay"></canvas>
+                    <div id="loading-overlay" class="overlay-msg active">
+                        <i data-lucide="info" class="loading-icon"></i>
+                        <span id="prompt-msg">Click "Start Webcam" to begin matching</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Panel: Match Results -->
+            <section class="panel-section match-section">
+                <div class="section-header">
+                    <h2>Best Matches</h2>
+                </div>
+
+                <!-- Primary Match Result -->
+                <div class="primary-match-container">
+                    <div class="meme-card main-meme" id="primary-meme">
+                        <div class="meme-placeholder">
+                            <i data-lucide="image" class="placeholder-icon"></i>
+                            <p>No pose captured yet</p>
+                        </div>
+                        <div class="meme-image-container" style="display: none;">
+                            <img id="primary-meme-img" src="" alt="Top Match Meme">
+                            <div class="meme-match-badge">
+                                <span class="badge-percent" id="primary-score">0%</span>
+                                <span class="badge-label">Similarity</span>
+                            </div>
+                        </div>
+                        <div class="meme-footer">
+                            <h3 id="primary-title">Awaiting Pose...</h3>
+                            <span class="meme-source" id="primary-source">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secondary Matches -->
+                <div class="secondary-matches-container">
+                    <div class="secondary-card disabled" id="sec-match-1">
+                        <div class="sec-img-holder">
+                            <i data-lucide="image"></i>
+                        </div>
+                        <div class="sec-info">
+                            <h4 class="sec-title">No Match #2</h4>
+                            <div class="sec-score-bar">
+                                <div class="sec-score-fill" style="width: 0%;"></div>
+                            </div>
+                            <span class="sec-score-text">0% Match</span>
+                        </div>
+                    </div>
+
+                    <div class="secondary-card disabled" id="sec-match-2">
+                        <div class="sec-img-holder">
+                            <i data-lucide="image"></i>
+                        </div>
+                        <div class="sec-info">
+                            <h4 class="sec-title">No Match #3</h4>
+                            <div class="sec-score-bar">
+                                <div class="sec-score-fill" style="width: 0%;"></div>
+                            </div>
+                            <span class="sec-score-text">0% Match</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- App JavaScript -->
+    <script src="app.js"></script>
+</body>
+
+</html>

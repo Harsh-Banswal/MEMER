@@ -1,0 +1,17 @@
+# Web server
+fastapi==0.111.0        # async web framework + WebSocket
+uvicorn==0.30.1         # ASGI server to run FastAPI
+
+# Pose estimation
+mediapipe==0.10.14      # BlazePose — extracts 33 keypoints
+opencv-python==4.10.0.84 # reads frames, image decoding
+
+# Numerical computing
+numpy==1.26.4           # keypoint arrays, vector math
+
+# Similarity search
+faiss-cpu==1.8.0        # approximate nearest neighbour index
+
+# Data handling
+pillow==10.3.0          # image loading for meme processing
+python-multipart==0.0.9 # needed by FastAPI to receive binary data
